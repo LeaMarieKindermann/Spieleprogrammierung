@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+
+    public float approachDistance = 2f; // Entfernung, bei der die Animation ausgelöst wird
     public float speed = 5;
     private Rigidbody2D rb;
     public float jumpHight = 5;
@@ -11,6 +13,7 @@ public class Player : MonoBehaviour
     private Animator anim; 
     private Vector3 rotation;
     private float vertical;
+
       // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // richtung bestimmen
         float richtung = Input.GetAxis("Horizontal");
 
@@ -34,7 +38,12 @@ public class Player : MonoBehaviour
             anim.SetBool("isRunning", false);
         }
 
-       
+        // Angriffsanimation Speer
+        if (Input.GetKeyDown(KeyCode.Return))  // Überprüfen Sie, ob die Enter-Taste gedrückt wird.
+        {
+            Debug.Log("Enter-Taste wurde gedrückt!");
+            anim.SetTrigger("isAttacking");  // Setzen Sie den Attack-Trigger.
+        }
 
         // blickrichtung und bewegung
         if (richtung < 0){
@@ -65,9 +74,7 @@ public class Player : MonoBehaviour
 
     }
 
-   
-
-     // testen ob Spieler etwas berührt
+    // testen ob Spieler etwas berührt
         private void OnCollisionEnter2D(Collision2D collision){
             if( collision.gameObject.tag == "ground"){
                 isGrounded = true; 
@@ -76,7 +83,11 @@ public class Player : MonoBehaviour
 
         }
 
-
-
-        
+    // Methode, um den Attack-Trigger zurückzusetzen
+    public void ResetAttackTrigger()
+    {
+        Debug.Log("Reset aufgeführt");
+        anim.ResetTrigger("isAttacking");
+    }
+     
 }
