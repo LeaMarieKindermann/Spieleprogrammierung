@@ -20,7 +20,7 @@ public class HitboxActivator : MonoBehaviour
     {
         Debug.Log("Hitbox activated!");
         weaponHitbox.ActivateHitbox();
-        Invoke("DeactivateHitbox", 0.1f); // Deaktiviere die Hitbox nach 0.1 Sekunden
+        Invoke("DeactivateHitbox", 0.2f); // Deaktiviere die Hitbox nach 0.1 Sekunden
     }
 
     private void DeactivateHitbox()

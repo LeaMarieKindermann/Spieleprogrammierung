@@ -6,20 +6,20 @@ public class Bat_Controller : MonoBehaviour
 {
     public float speed = 5f;
     public int damage = 2;
-    public float aggroRadius = 5f; // Der Radius, innerhalb dessen die Fledermaus angreifen wird.
-    public float attackCooldownTime = 3f; // Zeit in Sekunden zwischen den Angriffen
+    public float aggroRadius = 5f;
+    public float attackCooldownTime = 3f;
 
     private Animator batAnimator;
-
+    private Rigidbody2D batRigidbody;
     private Transform player;
     private bool canAttack = true;
     private float attackCooldown;
-
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         batAnimator = GetComponent<Animator>();
+        batRigidbody = GetComponent<Rigidbody2D>();
         // Cooldown auf die Startzeit setzen
         attackCooldown = attackCooldownTime; 
     }
@@ -66,4 +66,23 @@ public class Bat_Controller : MonoBehaviour
         player.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
+    void Die()
+    {
+        Debug.Log("Fledermaus ist gestorben!");
+        // Sterbeanimation der Fledermaus
+        batAnimator.SetTrigger("Die"); 
+
+        // Deaktiviere die Rigidbody2D-Komponente, um die gravitationsbedingte Bewegung zu stoppen
+        batRigidbody.simulated = false;
+
+        StartCoroutine(DestroyAfterAnimation(2f));
+    }
+
+    IEnumerator DestroyAfterAnimation(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Objekt aus der Szene löschen
+        Destroy(gameObject);
+    }
 }

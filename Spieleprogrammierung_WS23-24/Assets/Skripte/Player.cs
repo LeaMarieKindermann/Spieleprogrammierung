@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private Animator anim; 
     private Vector3 rotation;
     private float vertical;
+    public int Speerdamage = 5; 
+    private Transform bat; 
 
       // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         rotation = transform.eulerAngles;
+        bat = GameObject.FindGameObjectWithTag("bat").transform;
         
     }
 
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Enter-Taste wurde gedrückt!");
             anim.SetTrigger("isAttacking");  // Setzen Sie den Attack-Trigger.
+            AttackEnemy();
         }
 
         // blickrichtung und bewegung
@@ -89,5 +93,17 @@ public class Player : MonoBehaviour
         Debug.Log("Reset aufgeführt");
         anim.ResetTrigger("isAttacking");
     }
+
+    void AttackEnemy()
+    {
+        // Hier können Sie weitere Logik hinzufügen, z. B. Animation, Sound usw.
+        //batAnimator.SetTrigger("Attack");
+        Debug.Log("Spieler greift Gegner an und verursacht " + Speerdamage + " Schaden!");
+
+        // Fügen Sie dem Spieler Schaden hinzu.
+        // Sie müssen eine Referenz zum Spieler-Skript haben, um ihm Schaden zuzufügen.
+        bat.GetComponent<BatHealth>().TakeDamage(Speerdamage);
+    }
+
      
 }
