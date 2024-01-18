@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Hitbox activated!");
         weaponHitbox.enabled = true;
-        Invoke("DeactivateHitbox", 0.4f); // Deaktiviere die Hitbox nach 0.1 Sekunden
+        Invoke("DeactivateHitbox", 0.3f); // Deaktiviere die Hitbox nach 0.1 Sekunden
     }
 
     private void DeactivateHitbox()
