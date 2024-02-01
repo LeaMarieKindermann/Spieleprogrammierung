@@ -8,6 +8,7 @@ public class Slime_Controller : MonoBehaviour
     public Transform rightBoundary; // Rechter Bereichsbegrenzer
     public float minCollisionY = 0.5f;
     private Animator slimeAnimator;
+    public GameObject[] objectsToActivate; // Array der Objekte, die aktiviert werden sollen
 
     void Start()
     {
@@ -70,6 +71,11 @@ public class Slime_Controller : MonoBehaviour
     private void KillSlime()
     {
         slimeAnimator.SetTrigger("die"); 
+        // Aktiviere alle Objekte im Array
+        foreach (GameObject obj in objectsToActivate)
+        {
+            obj.SetActive(true);
+        }
         Destroy(gameObject, 1f); 
     }
 }

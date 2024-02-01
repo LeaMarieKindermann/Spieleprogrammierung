@@ -29,7 +29,15 @@ public class Player : MonoBehaviour
 
         weaponHitbox.enabled = false;
 
-        bat = GameObject.FindGameObjectWithTag("bat").transform;
+        GameObject batObject = GameObject.FindGameObjectWithTag("bat");
+        if (batObject != null)
+        {
+            bat = batObject.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Es wurde keine Bat gefunden!");
+        }
     }
 
     void Update()
