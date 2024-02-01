@@ -14,6 +14,7 @@ public class Bat_Controller : MonoBehaviour
     private Transform player;
     private bool canAttack = true;
     private float attackCooldown;
+    public string batID;
 
     void Start()
     {
@@ -38,7 +39,7 @@ public class Bat_Controller : MonoBehaviour
             if (Vector2.Distance(transform.position, player.position) < 1f && canAttack)
             {
                 batAnimator.SetTrigger("Attack");
-                AttackPlayer();
+                AttackPlayer(player);
                 canAttack = false; // canAttack auf false, damit die Fledermaus nicht sofort wieder angreift
                 attackCooldown = attackCooldownTime; // Cooldown neu setzen
             }
@@ -55,7 +56,7 @@ public class Bat_Controller : MonoBehaviour
         }
     }
 
-    void AttackPlayer()
+    void AttackPlayer(Transform target)
     {
         // Hier können Sie weitere Logik hinzufügen, z. B. Animation, Sound usw.
         //batAnimator.SetTrigger("Attack");
@@ -63,7 +64,7 @@ public class Bat_Controller : MonoBehaviour
 
         // Fügen Sie dem Spieler Schaden hinzu.
         // Sie müssen eine Referenz zum Spieler-Skript haben, um ihm Schaden zuzufügen.
-        player.GetComponent<PlayerHealth>().TakeDamage(damage);
+        target.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
     void Die()

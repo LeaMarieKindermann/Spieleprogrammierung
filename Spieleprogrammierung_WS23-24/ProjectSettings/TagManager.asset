@@ -11,6 +11,7 @@ TagManager:
   - coinText
   - starText
   - bat
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -89,8 +89,22 @@ public class Player : MonoBehaviour
 
         if (weaponHitbox.enabled && collision.gameObject.CompareTag("bat"))
         {
-            Debug.Log("Spieler greift Gegner an");
-            AttackEnemy();
+            BatHealth batHealth = collision.gameObject.GetComponent<BatHealth>();
+            Bat_Controller batController = collision.gameObject.GetComponent<Bat_Controller>();
+
+            if (batHealth != null && batController != null)
+            {
+                if (batController.batID == "bat1")
+                {
+                    Debug.Log("Spieler greift Bat 1 an und verursacht " + Speerdamage + " Schaden!");
+                    batHealth.TakeDamage(Speerdamage);
+                }
+                else if (batController.batID == "bat2")
+                {
+                    Debug.Log("Spieler greift Bat 2 an und verursacht " + Speerdamage + " Schaden!");
+                    batHealth.TakeDamage(Speerdamage);
+            }
+        }
         }
     }
 
@@ -111,6 +125,7 @@ public class Player : MonoBehaviour
         weaponHitbox.enabled = true;
         Invoke("DeactivateHitbox", 0.3f); // Deaktiviere die Hitbox nach 0.1 Sekunden
     }
+
 
     private void DeactivateHitbox()
     {
