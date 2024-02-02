@@ -7,9 +7,11 @@ TagManager:
   - ground
   - ladder
   - coin
-  - star
   - coinText
   - starText
+  - star1
+  - star2
+  - star3
   layers:
   - Default
   - TransparentFX
