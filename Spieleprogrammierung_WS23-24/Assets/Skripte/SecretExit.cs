@@ -12,13 +12,6 @@ public class SecretExit : MonoBehaviour
         {
             Debug.Log("Entrance!");
             SceneManager.LoadScene("Level 1");
-
-            SpawnpointManager_Cave spawnpointManager = FindObjectOfType<SpawnpointManager_Cave>();
-            // Platziere den Spieler am Spawnpoint
-            if (SpawnpointManager_Cave.instance != null && SpawnpointManager_Cave.instance.spawnpoint != null)
-            {
-                collision.transform.position = SpawnpointManager_Cave.instance.spawnpoint.position;
-            }
         }
     }
 }
