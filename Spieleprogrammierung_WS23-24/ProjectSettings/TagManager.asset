@@ -12,6 +12,7 @@ TagManager:
   - starText
   - bat
   - Wall
+  - slime
   layers:
   - Default
   - TransparentFX

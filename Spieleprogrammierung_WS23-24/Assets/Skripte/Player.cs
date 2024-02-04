@@ -111,7 +111,17 @@ public class Player : MonoBehaviour
                 {
                     Debug.Log("Spieler greift Bat 2 an und verursacht " + Speerdamage + " Schaden!");
                     batHealth.TakeDamage(Speerdamage);
-            }
+                }
+                else if (batController.batID == "bat3")
+                {
+                    Debug.Log("Spieler greift Bat 3 an und verursacht " + Speerdamage + " Schaden!");
+                    batHealth.TakeDamage(Speerdamage);
+                }
+                else if (batController.batID == "bat4")
+                {
+                    Debug.Log("Spieler greift Bat 4 an und verursacht " + Speerdamage + " Schaden!");
+                    batHealth.TakeDamage(Speerdamage);
+                }
         }
         }
     }

@@ -173,6 +173,7 @@ MonoBehaviour:
   damage: 2
   aggroRadius: 10
   attackCooldownTime: 3
+  batID: bat4
 --- !u!114 &5377141086706416071
 MonoBehaviour:
   m_ObjectHideFlags: 0
