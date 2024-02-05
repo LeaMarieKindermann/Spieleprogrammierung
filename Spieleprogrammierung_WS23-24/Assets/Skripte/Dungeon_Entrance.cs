@@ -29,23 +29,34 @@ public class Dungeon_Entrance : MonoBehaviour
     }
 
     IEnumerator SpawnEnemies()
+{
+    foreach (GameObject enemy in enemies)
     {
-        foreach (GameObject enemy in enemies)
+        // Überprüfe, ob der Gegner existiert und nicht bereits zerstört wurde
+        if (enemy != null)
         {
-            // Aktiviere den Gegner
-            enemy.SetActive(true);
-            yield return new WaitForSeconds(spawnInterval);
+            // Aktiviere den Gegner, wenn er nicht bereits aktiv ist
+            if (!enemy.activeSelf)
+            {
+                enemy.SetActive(true);
+            }
         }
+        yield return new WaitForSeconds(spawnInterval);
+    }
 
-        // Überprüfe, ob alle Gegner zerstört wurden
-        while (!AllEnemiesDestroyed())
-        {
-            yield return null;
-        }
+    // Überprüfe, ob alle Gegner zerstört wurden
+    while (!AllEnemiesDestroyed())
+    {
+        yield return null;
+    }
 
-        // Alle Gegner wurden zerstört, zeige den Ausgang an
+    // Alle Gegner wurden zerstört, zeige den Ausgang an
+    if (exitObject != null)
+    {
         exitObject.SetActive(true);
     }
+}
+
 
     bool AllEnemiesDestroyed()
     {

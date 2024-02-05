@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     private CapsuleCollider2D weaponHitbox;
     private  int Speerdamage = 5;
     private Transform bat; 
+    public PlayerHealth playerHealth;
 
     void Start()
     {
@@ -42,6 +43,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
+        // Überprüfe, ob der Spieler noch lebt
+        if (playerHealth.currentHealth <= 0)
+            return; 
+
         float direction = Input.GetAxis("Horizontal");
 
         if (direction != 0)
@@ -95,7 +101,11 @@ public class Player : MonoBehaviour
             isGrounded = true;
         }
 
-        if (weaponHitbox.enabled && collision.gameObject.CompareTag("bat"))
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+    if (weaponHitbox.enabled && collision.gameObject.CompareTag("bat"))
         {
             BatHealth batHealth = collision.gameObject.GetComponent<BatHealth>();
             Bat_Controller batController = collision.gameObject.GetComponent<Bat_Controller>();
@@ -122,7 +132,7 @@ public class Player : MonoBehaviour
                     Debug.Log("Spieler greift Bat 4 an und verursacht " + Speerdamage + " Schaden!");
                     batHealth.TakeDamage(Speerdamage);
                 }
-        }
+            }   
         }
     }
 
@@ -139,7 +149,7 @@ public class Player : MonoBehaviour
 
     public void ActivateHitboxWithDelay()
     {
-        Debug.Log("Hitbox activated!");
+        // Debug.Log("Hitbox activated!");
         weaponHitbox.enabled = true;
         Invoke("DeactivateHitbox", 0.3f); // Deaktiviere die Hitbox nach 0.1 Sekunden
     }
@@ -147,7 +157,7 @@ public class Player : MonoBehaviour
 
     private void DeactivateHitbox()
     {
-        Debug.Log("Hitbox deactivated!");
+        // Debug.Log("Hitbox deactivated!");
         weaponHitbox.enabled = false;
     } 
 }

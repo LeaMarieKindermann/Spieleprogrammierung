@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100; // Die maximale Gesundheit des Spielers.
     public int currentHealth;    // Die aktuelle Gesundheit des Spielers.
+    public GameObject[] objectsToAppear;
 
     private void Start()
     {
@@ -24,9 +25,17 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-        // Hier können Sie Logik für den Tod des Spielers hinzufügen, z. B. Spiel neu starten.
         Debug.Log("Spieler ist gestorben!");
-        // Zum Beispiel: SceneManager.LoadScene("GameOverScene");
+        // Objekte erscheinen lassen
+        foreach (GameObject obj in objectsToAppear)
+        {
+            obj.SetActive(true); // Objekt aktivieren, damit es sichtbar wird
+        }
+    }
+
+    public void SetFullHealth()
+    {
+        currentHealth = maxHealth;
     }
 
 }
