@@ -3973,6 +3973,9 @@ MonoBehaviour:
   Complete1: {fileID: 1219436463}
   Complete2: {fileID: 915754992}
   Complete3: {fileID: 1798108328}
+  coinString1: {fileID: 1354133783}
+  coinString2: {fileID: 938656498}
+  coinString3: {fileID: 1942024099}
 --- !u!114 &698116343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4374,11 +4377,11 @@ GameObject:
   - component: {fileID: 746109111}
   m_Layer: 5
   m_Name: Level3
-  m_TagString: level3UI
+  m_TagString: coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &746109111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9162,8 +9165,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 294.2, y: -15}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 224.25003, y: -15}
+  m_SizeDelta: {x: 139.90005, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934524557
 MonoBehaviour:
