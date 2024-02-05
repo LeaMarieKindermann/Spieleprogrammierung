@@ -63,7 +63,7 @@ public class Slime_Controller : MonoBehaviour
         Vector2 slimePosition = transform.position;
 
         // Überprüfe, ob der Spieler über dem Slime ist (in der Y-Richtung)
-        return playerPosition.y >= slimePosition.y;
+        return playerPosition.y > slimePosition.y;
     }
 
     // Methode, um den Slime zu töten
