@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         Debug.Log("Spieler ist gestorben!");
         // Objekte erscheinen lassen
