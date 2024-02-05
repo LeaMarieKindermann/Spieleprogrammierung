@@ -38,7 +38,7 @@ public class Climbing : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 1f;
+            rb.gravityScale = 2f;
         }
     }
 

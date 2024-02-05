@@ -19,9 +19,20 @@ public class LevelMenu : MonoBehaviour
      public TMP_Text coinString1;
       public TMP_Text coinString2;
        public TMP_Text coinString3;
+        public GameObject star11;
+    public GameObject star12;
+    public GameObject star13;
+     public GameObject star21;
+    public GameObject star22;
+    public GameObject star23;
+     public GameObject star31;
+    public GameObject star32;
+    public GameObject star33;
 
  void Start(){
+    Complete1.SetActive(false);
       enableLevel();
+        
  }
 
     // Update is called once per frame
@@ -55,16 +66,82 @@ public class LevelMenu : MonoBehaviour
         {
             Level1.SetActive(true);
              coinString1.text = LevelManager.GetCollectedCoins(LevelManager.LevelID.Level1).ToString() + "/25";
+              bool[] starArry = LevelManager.GetCollectedStars(LevelManager.LevelID.Level1);
+     
+            for (int i = 0; i < starArry.Length; i++)
+            {
+                if (starArry[i]){
+                    switch (i)
+                    {
+                        case 0:
+                            star11.SetActive(true);
+                            break;
+                         case 1:
+                            star12.SetActive(true);
+                            break;
+                        case 2:
+                            star13.SetActive(true);
+                            break;
+                    default:
+                    Debug.LogWarning("Ungültiger Index im Array.");
+                    break;
+                    }
+                }
+             }
         }
         else if (collision.CompareTag("level2UI"))
         {
             Level2.SetActive(true);
             coinString2.text = LevelManager.GetCollectedCoins(LevelManager.LevelID.Level2).ToString()+ "/25";
+             bool[]  starArry = LevelManager.GetCollectedStars(LevelManager.LevelID.Level2);
+     
+            for (int i = 0; i < starArry.Length; i++)
+            {
+                if (starArry[i]){
+                    switch (i)
+                    {
+                        case 0:
+                            star21.SetActive(true);
+                            break;
+                         case 1:
+                            star22.SetActive(true);
+                            break;
+                        case 2:
+                            star23.SetActive(true);
+                            break;
+                    default:
+                    Debug.LogWarning("Ungültiger Index im Array.");
+                    break;
+                    }
+                }
+             }
         }
          else if (collision.CompareTag("level3UI"))
         {
             Level3.SetActive(true);
              coinString3.text = LevelManager.GetCollectedCoins(LevelManager.LevelID.Level3).ToString() + "/25";
+            bool[] starArry = LevelManager.GetCollectedStars(LevelManager.LevelID.Level3);
+     
+            for (int i = 0; i < starArry.Length; i++)
+            {
+                if (starArry[i]){
+                    switch (i)
+                    {
+                        case 0:
+                            star31.SetActive(true);
+                            break;
+                         case 1:
+                            star32.SetActive(true);
+                            break;
+                        case 2:
+                            star33.SetActive(true);
+                            break;
+                    default:
+                    Debug.LogWarning("Ungültiger Index im Array.");
+                    break;
+                    }
+                }
+             }
         }
     }
 
@@ -107,4 +184,6 @@ public class LevelMenu : MonoBehaviour
          Complete3.SetActive(true);
     }
 }
+
+ 
 }

@@ -56,5 +56,30 @@ public class LevelManager : MonoBehaviour
         return collectedCoins; 
     }
 
+    public static void SaveCollectedStar(LevelID levelID, int starNumber){
+        string key = "CollectedStar_" + levelID.ToString() + starNumber.ToString();
+        PlayerPrefs.SetInt(key, 1);
+        PlayerPrefs.Save();
+
+    }
+
+    public static bool[] GetCollectedStars(LevelID levelID){
+        bool[] starArry = new bool[3];
+        for ( int i = 0; i < starArry.Length; i ++){
+            string key = "CollectedStar_" + levelID.ToString() + i.ToString();
+           int star =  PlayerPrefs.GetInt(key, 0);
+
+           if( star == 1){
+            starArry[i] = true;
+           }
+           else {
+            starArry[i] = false;
+           }
+
+        }
+        return starArry;
+
+    }
+
 }
 

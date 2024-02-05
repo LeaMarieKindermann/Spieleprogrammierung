@@ -5,14 +5,8 @@ using UnityEngine;
 public class collect : MonoBehaviour
 {
      public CollectManager managerCoin;
-    //  private CollectStarManager managerStar;
+    public  CollectStarManager managerStar;
    
-    
-     void Start()
-     {
-        
-        //  managerStar = GameObject.FindGameObjectWithTag("starText").GetComponent<CollectStarManager>();
-     }
 
    
      void Update()
@@ -22,23 +16,24 @@ public class collect : MonoBehaviour
 
       private void OnTriggerEnter2D(Collider2D other)
      {
-    //      if (other.CompareTag("star1"))
-    //      {
-    //          managerStar.AddStar(currentLevel, 0);
-    //          Destroy(other.gameObject);
-    //      }
-    //       else if (other.CompareTag("star2"))
-    //      {
-    //          managerStar.AddStar(currentLevel, 1);
-    //          Destroy(other.gameObject);
-    //      }
-    //       else if (other.CompareTag("star3"))
-    //      {
-    //          managerStar.AddStar(currentLevel, 2);
-    //          Destroy(other.gameObject);
-    //      }
-         if (other.CompareTag("coin"))
+          if (other.CompareTag("star1"))
+          {
+             managerStar.AddStar( 0);
+              Destroy(other.gameObject);
+          }
+           else if (other.CompareTag("star2"))
+          {
+              managerStar.AddStar( 1);
+              Destroy(other.gameObject);
+          }
+           else if (other.CompareTag("star3"))
+          {
+              managerStar.AddStar( 2);
+              Destroy(other.gameObject);
+          }
+        else  if (other.CompareTag("coin"))
          {
+          
               managerCoin.AddCoin();
              Destroy(other.gameObject);
          }

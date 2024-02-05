@@ -8,6 +8,9 @@ public class LevelDone : MonoBehaviour
 {
      LevelManager.LevelID levelID;
      public TMP_Text coinString;
+         public GameObject star1;
+    public GameObject star2;
+    public GameObject star3;
 
   void Start()
 {
@@ -17,8 +20,9 @@ public class LevelDone : MonoBehaviour
     {
       
      levelID = (LevelManager.LevelID)System.Enum.Parse(typeof(LevelManager.LevelID), levelIDString);
-     Debug.Log("levelID " + levelID);
-     Debug.Log("LevelManager.GetCollectedCoins(levelID) " + LevelManager.GetCollectedCoins(levelID));
+
+     displayStars();
+   
       coinString.text = LevelManager.GetCollectedCoins(levelID).ToString() + "/25";
     }
    
@@ -33,4 +37,32 @@ public class LevelDone : MonoBehaviour
       SceneManager.LoadScene("Level-Menu");
     } 
     }
+
+   public void  displayStars(){
+     bool[] starArry = new bool[3];
+         starArry = LevelManager.GetCollectedStars(levelID);
+     
+        for (int i = 0; i < starArry.Length; i++)
+        {
+           if (starArry[i]){
+            switch (i)
+            {
+                case 0:
+                    star1.SetActive(true);
+                    break;
+                case 1:
+                    star2.SetActive(true);
+                    break;
+                case 2:
+                    star3.SetActive(true);
+                    break;
+            
+
+                default:
+                    Debug.LogWarning("Ungültiger Index im Array.");
+                    break;
+            }
+           }
+        }
+   }
 }
