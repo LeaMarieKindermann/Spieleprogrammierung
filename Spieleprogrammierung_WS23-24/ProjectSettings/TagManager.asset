@@ -31,6 +31,8 @@ TagManager:
   - star1
   - star2
   - star3
+  - Tutorial10
+  - Tutorial11
   layers:
   - Default
   - TransparentFX

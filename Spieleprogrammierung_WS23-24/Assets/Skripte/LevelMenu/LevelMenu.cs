@@ -54,7 +54,7 @@ public class LevelMenu : MonoBehaviour
      else if (Input.GetKeyDown(KeyCode.Return) && Level3.activeSelf)
     {
          if ( !Lock2.activeSelf){
-            SceneManager.LoadScene("Level 2");
+            SceneManager.LoadScene("Level 2 - Boss");
         }
     } 
 
