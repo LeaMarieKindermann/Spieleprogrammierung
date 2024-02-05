@@ -134,6 +134,28 @@ public class Player : MonoBehaviour
                 }
             }   
         }
+    else if (weaponHitbox.enabled && collision.gameObject.CompareTag("spider"))
+        {
+            SpiderHealth spiderHealth = collision.gameObject.GetComponent<SpiderHealth>();
+            Spider_Controller spiderController = collision.gameObject.GetComponent<Spider_Controller>();
+
+            if (spiderHealth != null && spiderController != null)
+            {
+                Debug.Log("Spieler greift Spinne an und verursacht " + Speerdamage + " Schaden!");
+                spiderHealth.TakeDamage(Speerdamage);
+            }
+        }
+    else if (weaponHitbox.enabled && collision.gameObject.CompareTag("spiderden"))
+        {
+            SpiderDenHealth spiderdenHealth = collision.gameObject.GetComponent<SpiderDenHealth>();
+            SpiderDen_Controller spiderdenController = collision.gameObject.GetComponent<SpiderDen_Controller>();
+
+            if (spiderdenHealth != null && spiderdenController != null)
+            {
+                Debug.Log("Spieler greift Spinne an und verursacht " + Speerdamage + " Schaden!");
+                spiderdenHealth.TakeDamage(Speerdamage);
+            }
+        }
     }
 
     void EnableHitbox()
@@ -151,7 +173,7 @@ public class Player : MonoBehaviour
     {
         // Debug.Log("Hitbox activated!");
         weaponHitbox.enabled = true;
-        Invoke("DeactivateHitbox", 0.3f); // Deaktiviere die Hitbox nach 0.1 Sekunden
+        Invoke("DeactivateHitbox", 0.4f); 
     }
 
 

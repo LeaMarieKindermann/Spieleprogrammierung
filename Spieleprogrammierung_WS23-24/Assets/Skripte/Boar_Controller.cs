@@ -1,49 +1,43 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class ObjectMovement : MonoBehaviour
+public class Boar_Controller : MonoBehaviour
 {
-    public Transform player;
-    public float detectionRange = 5f;
-    public float moveSpeed = 3f;
+    public Transform player; // Die Position des Spielers
+    public float runningSpeed = 5f; // Die Geschwindigkeit, mit der das Wildschwein rennt
+    public float waitTime = 3f; // Die Zeit, die das Wildschwein zwischen den Läufen wartet
 
-    private bool isMoving = false;
+    private bool isRunning = false; // Variable, um zu verfolgen, ob das Wildschwein gerade rennt
 
     void Start()
     {
-        // Starte die Coroutine für die Objektbewegung
-        StartCoroutine(ObjectMovementCoroutine());
+        // Starte die Coroutine, um das Verhalten des Wildschweins zu steuern
+        StartCoroutine(RunTowardsPlayer());
     }
 
-    IEnumerator ObjectMovementCoroutine()
+    IEnumerator RunTowardsPlayer()
     {
         while (true)
         {
-            // Prüfe, ob der Spieler in Reichweite ist
-            if (Vector3.Distance(transform.position, player.position) <= detectionRange)
+            // Warte für 3 Sekunden, wenn das Wildschwein nicht rennt
+            if (!isRunning)
             {
-                isMoving = true;
-                // Bewege das Objekt für 2 Sekunden
-                yield return new WaitForSeconds(2f);
-                isMoving = false;
-                // Warte 3 Sekunden, bevor die Bewegung wiederholt wird
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(waitTime);
             }
-            else
+
+            // Bestimme die Richtung, in die das Wildschwein laufen soll
+            Vector3 direction = (player.position - transform.position).normalized;
+
+            // Bewege das Wildschwein in Richtung des Spielers
+            isRunning = true;
+            while (Vector3.Distance(transform.position, player.position) > 1f)
             {
+                transform.position += direction * runningSpeed * Time.deltaTime;
                 yield return null;
             }
-        }
-    }
 
-    void Update()
-    {
-        // Wenn das Objekt sich bewegt
-        if (isMoving)
-        {
-            // Bewege das Objekt in Richtung des Spielers
-            transform.position += transform.forward * moveSpeed * Time.deltaTime;
+            // Setze isRunning auf false, um anzuzeigen, dass das Wildschwein nicht mehr rennt
+            isRunning = false;
         }
     }
 }

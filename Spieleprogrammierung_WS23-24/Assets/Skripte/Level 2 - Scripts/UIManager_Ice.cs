@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class UIManager_Ice : MonoBehaviour
 {
     public Button tryAgainButton;   // Referenz auf den "Try Again" Button
     public Button menuButton;       // Referenz auf den "Menu" Button
@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
         }
         else 
         {
-            SceneManager.LoadScene("Level 1");
+            SceneManager.LoadScene("Level 2 - Boss");
         }
     }
 

@@ -3,29 +3,31 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: 
-   - ground
-   - ladder
-   - coin
-   - star
-   - coinText
-   - starText
-   - bat
-   - Wall
-   - slime
-   - level1UI
-   - level2UI
-   - level3UI
-   - Tutorial1
-   - Tutorial2
-   - levelEnd
-   - Tutorial3
-   - Tutorial4
-   - Tutorial5
-   - Tutorial6
-   - Tutorial7
-   - Tutorial8
-   - Tutorial9
+  tags:
+  - ground
+  - ladder
+  - coin
+  - star
+  - coinText
+  - starText
+  - bat
+  - Wall
+  - slime
+  - level1UI
+  - level2UI
+  - level3UI
+  - Tutorial1
+  - Tutorial2
+  - levelEnd
+  - Tutorial3
+  - Tutorial4
+  - Tutorial5
+  - Tutorial6
+  - Tutorial7
+  - Tutorial8
+  - Tutorial9
+  - spider
+  - spiderden
   layers:
   - Default
   - TransparentFX
