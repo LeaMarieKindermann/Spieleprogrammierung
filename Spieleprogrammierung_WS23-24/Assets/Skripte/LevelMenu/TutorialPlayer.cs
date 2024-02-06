@@ -16,6 +16,7 @@ public class TutorialPlayer : MonoBehaviour
     private int attackLayerMask;
     private Collider2D playerHitbox;
     private Transform bat; 
+  
    
     
  
@@ -27,8 +28,6 @@ public class TutorialPlayer : MonoBehaviour
         rotation = transform.eulerAngles;
 
         playerHitbox = GetComponent<Collider2D>();
-       
-
     
     }
 
@@ -38,11 +37,13 @@ public class TutorialPlayer : MonoBehaviour
 
         if (direction != 0)
         {
+           
             anim.SetBool("isRunning", true);
         }
         else
         {
             anim.SetBool("isRunning", false);
+           
         }
 
 
@@ -59,6 +60,7 @@ public class TutorialPlayer : MonoBehaviour
 
         if (isGrounded == false)
         {
+       
             anim.SetBool("isJumping", true);
         }
         else

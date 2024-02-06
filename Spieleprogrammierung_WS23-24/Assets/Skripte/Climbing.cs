@@ -10,6 +10,7 @@ public class Climbing : MonoBehaviour
     private bool isClimbing;
     private Rigidbody2D rb;
      private Animator anim; 
+      public AudioSource climbAudio;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +23,14 @@ public class Climbing : MonoBehaviour
     {
      vertical = Input.GetAxisRaw("Vertical");
 
+          if (isLadder && (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)))
+        {
+            climbAudio.Play();
+        }
+
         if (isLadder && Mathf.Abs(vertical) > 0f)
         {
+            
             anim.SetBool("isClimbing", true);
             isClimbing = true;
         }
@@ -33,12 +40,14 @@ public class Climbing : MonoBehaviour
     {
         if (isClimbing)
         {
+            
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
         }
         else
         {
             rb.gravityScale = 2f;
+            
         }
     }
 
@@ -47,6 +56,9 @@ public class Climbing : MonoBehaviour
         if (collision.CompareTag("ladder"))
         {
             isLadder = true;
+
+           
+           
         }
     }
 
@@ -54,9 +66,11 @@ public class Climbing : MonoBehaviour
     {
         if (collision.CompareTag("ladder"))
         {
+            
             isLadder = false;
             anim.SetBool("isClimbing", false);
             isClimbing = false;
+            
         }
     }
 }
