@@ -12,6 +12,8 @@ public class Spider_Controller : MonoBehaviour
     public int damage = 2;
     private Animator spiderAnimator;
     private bool canAttack = true;
+    private bool isDead = false; 
+    private SpiderHealth spiderHealth; // Referenz auf das SpiderHealth Skript
     
 
     void Start()
@@ -20,10 +22,15 @@ public class Spider_Controller : MonoBehaviour
         attackCooldown = attackCooldownTime; 
         spiderAnimator = GetComponent<Animator>();
         attackCooldown = attackCooldownTime; 
+        spiderHealth = GetComponent<SpiderHealth>(); // Holen Sie sich das SpiderHealth-Skript
     }
 
     void Update()
     {
+        if (spiderHealth.IsDead()){
+            isDead = true;
+        }
+
         // Überprüfen Sie zuerst, ob der Spieler innerhalb des Aggro-Radius ist.
         if (Vector2.Distance(transform.position, player.position) <= aggroRadius)
         {
@@ -32,8 +39,9 @@ public class Spider_Controller : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             
             // Überprüfung, ob Fledermaus den Spieler erreicht hat
-            if (Vector2.Distance(transform.position, player.position) < 1.5f && canAttack)
+            if (Vector2.Distance(transform.position, player.position) < 1.5f && canAttack && isDead == false)
             {
+
                 spiderAnimator.SetTrigger("attack");
                 AttackPlayer(player);
                 canAttack = false;

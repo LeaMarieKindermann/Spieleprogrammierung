@@ -8,10 +8,13 @@ public class Slime_Controller : MonoBehaviour
     public Transform rightBoundary; // Rechter Bereichsbegrenzer
     public float minCollisionY = 0.5f;
     private Animator slimeAnimator;
+    public Transform player; // Die Referenz auf den Spieler
+    public int damage = 1;
 
     void Start()
     {
         slimeAnimator = GetComponent<Animator>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update()
@@ -52,6 +55,10 @@ public class Slime_Controller : MonoBehaviour
             Debug.Log("Kollision mit Spieler und oben!");
             // Hier könntest du die Aktion ausführen, um den Slime zu töten
             KillSlime();
+        }
+        else 
+        {
+            player.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
     }
 
