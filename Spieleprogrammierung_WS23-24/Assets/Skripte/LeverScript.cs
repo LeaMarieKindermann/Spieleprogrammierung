@@ -6,6 +6,7 @@ public class LeverScript : MonoBehaviour
 
     private bool leverActivated = false; // Flag, um zu überprüfen, ob der Hebel betätigt wurde
     private Animator leverAnimator;
+      public AudioSource leverAudio;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class LeverScript : MonoBehaviour
     {
         if (other.CompareTag("Player") && !leverActivated)
         {
+            leverAudio.Play();
             leverActivated = true; // Der Hebel wurde betätigt
             leverAnimator.SetTrigger("pushed");
 

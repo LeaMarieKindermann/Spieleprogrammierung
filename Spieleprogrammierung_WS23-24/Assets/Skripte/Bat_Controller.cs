@@ -15,6 +15,9 @@ public class Bat_Controller : MonoBehaviour
     private bool canAttack = true;
     private float attackCooldown;
     public string batID;
+      public AudioSource idelAudio;
+     public AudioSource dieAudio;
+   
 
     void Start()
     {
@@ -69,7 +72,7 @@ public class Bat_Controller : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Fledermaus ist gestorben!");
+       dieAudio.Play();
         // Sterbeanimation der Fledermaus
         batAnimator.SetTrigger("Die"); 
 

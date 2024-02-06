@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100; // Die maximale Gesundheit des Spielers.
     public int currentHealth;    // Die aktuelle Gesundheit des Spielers.
     public GameObject[] objectsToAppear;
+    public AudioSource dieAudio;
 
     private void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        dieAudio.Play();
         // Überprüfen Sie, ob die aktuelle Gesundheit kleiner oder gleich Null ist.
         if (currentHealth <= 0)
         {

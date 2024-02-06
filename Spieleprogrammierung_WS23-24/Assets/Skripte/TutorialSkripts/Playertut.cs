@@ -19,6 +19,7 @@ public class Playertut : MonoBehaviour
     private Transform bat;
      public LevelManager.LevelID levelID; 
      public PlayerHealth playerHealth;
+     public AudioSource dieAudio;
 
     void Start()
     {
@@ -45,9 +46,10 @@ public class Playertut : MonoBehaviour
     void Update()
     {
         // Überprüfe, ob der Spieler noch lebt
-        if (playerHealth.currentHealth <= 0)
+        if (playerHealth.currentHealth <= 0){
+            dieAudio.Play();
             return;
-            
+        }
         float direction = Input.GetAxis("Horizontal");
 
         if (direction != 0)

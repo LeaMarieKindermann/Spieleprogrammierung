@@ -10,6 +10,8 @@ public class Slime_Controller : MonoBehaviour
     private Animator slimeAnimator;
     public Transform player; // Die Referenz auf den Spieler
     public int damage = 1;
+      public AudioSource dieAudio;
+        public AudioSource idelAudio;
 
     void Start()
     {
@@ -21,7 +23,7 @@ public class Slime_Controller : MonoBehaviour
     {
         // Bewegung des Slime nach rechts oder links
         if (movingRight)
-        {
+        { 
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
         }
         else
@@ -76,6 +78,7 @@ public class Slime_Controller : MonoBehaviour
     // Methode, um den Slime zu töten
     private void KillSlime()
     {
+        dieAudio.Play();
         slimeAnimator.SetTrigger("die"); 
         Destroy(gameObject, 1f); 
     }
