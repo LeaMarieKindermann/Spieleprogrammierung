@@ -56,7 +56,7 @@ public class Slime_Controller : MonoBehaviour
             // Hier könntest du die Aktion ausführen, um den Slime zu töten
             KillSlime();
         }
-        else 
+        else if (collision.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerHealth>().TakeDamage(damage);
         }
