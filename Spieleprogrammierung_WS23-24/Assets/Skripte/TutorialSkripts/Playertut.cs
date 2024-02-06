@@ -18,6 +18,7 @@ public class Playertut : MonoBehaviour
     private  int Speerdamage = 5;
     private Transform bat;
      public LevelManager.LevelID levelID; 
+     public PlayerHealth playerHealth;
 
     void Start()
     {
@@ -43,6 +44,10 @@ public class Playertut : MonoBehaviour
 
     void Update()
     {
+        // Überprüfe, ob der Spieler noch lebt
+        if (playerHealth.currentHealth <= 0)
+            return;
+            
         float direction = Input.GetAxis("Horizontal");
 
         if (direction != 0)
