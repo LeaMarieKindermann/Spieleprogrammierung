@@ -13,6 +13,8 @@ public class ShowTutorials : MonoBehaviour
    public GameObject Tutorial7;
    public GameObject Tutorial8;
    public GameObject Tutorial9;
+   public GameObject Tutorial10;
+   public GameObject Tutorial11;
    
 
    
@@ -61,6 +63,16 @@ public class ShowTutorials : MonoBehaviour
             
             Tutorial9.SetActive(true);
         }
+           else if (collision.CompareTag("Tutorial10"))
+        {
+            
+            Tutorial10.SetActive(true);
+        }
+           else if (collision.CompareTag("Tutorial11"))
+        {
+            
+            Tutorial11.SetActive(true);
+        }
         
     }
 
@@ -101,6 +113,14 @@ public class ShowTutorials : MonoBehaviour
           else if (collision.CompareTag("Tutorial9"))
         {
            Tutorial9.SetActive(false);
+        }
+         else if (collision.CompareTag("Tutorial10"))
+        {
+           Tutorial10.SetActive(false);
+        }
+         else if (collision.CompareTag("Tutorial11"))
+        {
+           Tutorial11.SetActive(false);
         }
        
     }

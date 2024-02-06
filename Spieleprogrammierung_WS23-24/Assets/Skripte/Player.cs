@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Player : MonoBehaviour
     private  int Speerdamage = 5;
     private Transform bat; 
     public PlayerHealth playerHealth;
+     public LevelManager.LevelID levelID; 
 
     void Start()
     {
@@ -155,6 +157,13 @@ public class Player : MonoBehaviour
                 Debug.Log("Spieler greift Spinne an und verursacht " + Speerdamage + " Schaden!");
                 spiderdenHealth.TakeDamage(Speerdamage);
             }
+        }
+        else if (collision.gameObject.tag == "levelEnd")
+        {
+ 
+             LevelManager.SaveCompletedLevel(levelID);
+            PlayerPrefs.SetString("CurrentLevelID", levelID.ToString());
+             SceneManager.LoadScene("LevelDoneUI");
         }
     }
 
