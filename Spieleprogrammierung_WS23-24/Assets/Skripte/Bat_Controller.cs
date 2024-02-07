@@ -17,6 +17,8 @@ public class Bat_Controller : MonoBehaviour
     public string batID;
       public AudioSource idelAudio;
      public AudioSource dieAudio;
+     private bool isDead = false; 
+     private BatHealth batHealth;
    
 
     void Start()
@@ -26,10 +28,15 @@ public class Bat_Controller : MonoBehaviour
         batRigidbody = GetComponent<Rigidbody2D>();
         // Cooldown auf die Startzeit setzen
         attackCooldown = attackCooldownTime; 
+        batHealth = GetComponent<BatHealth>(); // Holen Sie sich das SpiderHealth-Skript
     }
 
     void Update()
     {
+        if (batHealth.IsDead()){
+            isDead = true;
+        }
+
         // Überprüfen Sie zuerst, ob der Spieler innerhalb des Aggro-Radius ist.
         if (Vector2.Distance(transform.position, player.position) <= aggroRadius)
         {
@@ -39,7 +46,7 @@ public class Bat_Controller : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
 
             // Überprüfung, ob Fledermaus den Spieler erreicht hat
-            if (Vector2.Distance(transform.position, player.position) < 1f && canAttack)
+            if (Vector2.Distance(transform.position, player.position) < 1f && canAttack && isDead == false)
             {
                 batAnimator.SetTrigger("Attack");
                 AttackPlayer(player);

@@ -7,6 +7,7 @@ public class BatHealth : MonoBehaviour
     public int maxHealth = 10; // Die maximale Gesundheit der Fledermaus
     public int currentHealth;    // Die aktuelle Gesundheit der Fledermaus
     public Animator batAnimator; // Der Animator für die Animationen der Fledermaus
+    private bool isDead = false;
 
     void Start()
     {
@@ -19,9 +20,16 @@ public class BatHealth : MonoBehaviour
         // Überprüfen Sie, ob die aktuelle Gesundheit kleiner oder gleich Null ist.
         if (currentHealth <= 0)
         {
+            isDead = true;
             Die();
         }
     }
+
+    public bool IsDead()
+    {
+        return isDead; // Gib den Wert von isDead zurück, um anderen Skripten mitzuteilen, ob die Spinne tot ist oder nicht
+    }
+
 
     void Die()
     {
