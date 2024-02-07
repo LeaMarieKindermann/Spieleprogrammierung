@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         rotation = transform.eulerAngles;
 
         playerHitbox = GetComponent<Collider2D>();
-        weaponHitbox = GetComponent<CapsuleCollider2D>();
+        weaponHitbox = GetComponentInChildren<CapsuleCollider2D>();
 
         weaponHitbox.enabled = false;
 

@@ -8,7 +8,9 @@ public class BossHealth : MonoBehaviour
     public int currentHealth;    // Die aktuelle Gesundheit der Fledermaus
     public Animator bossAnimator; // Der Animator für die Animationen der Fledermaus
     private bool isDead = false;
-
+    public GameObject startObject; // Referenz auf das Start-Objekt
+    public GameObject[] coins;
+    public GameObject exitDungeon;
 
     void Start()
     {
@@ -37,6 +39,21 @@ public class BossHealth : MonoBehaviour
         Debug.Log("Boss ist gestorben!");
         // Sterbeanimation der Fledermaus
         bossAnimator.SetTrigger("die"); 
+
+        if (startObject != null)
+        {
+            startObject.SetActive(true);
+        }
+
+        foreach (GameObject obj in coins)
+        {
+            obj.SetActive(true); // Deaktiviere alle Objekte zu Beginn
+        }
+
+        if (exitDungeon != null) 
+        {
+            exitDungeon.SetActive(true);
+        }
 
         StartCoroutine(DestroyAfterAnimation(2f));
     }

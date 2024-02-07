@@ -7,6 +7,7 @@ public class Boss_Controller : MonoBehaviour
     public float dashSpeed = 10f; // Geschwindigkeit des Dashs
     public float attackDuration = 4f; // Dauer der Angriffsanimation
     public float attackCooldown = 3f; // Abklingzeit zwischen den Angriffen
+    public float aggroRadius = 10f;
     private bool isAttacking = false; // Gibt an, ob der Endboss gerade angreift
     public Animator bossAnimator;
     private Vector3 currentScale;
@@ -14,6 +15,9 @@ public class Boss_Controller : MonoBehaviour
     public BoxCollider2D weaponHitbox;
     private Vector3 originalPositionWeapon;
     public int damage = 5;
+    private bool isCoroutineStarted = false; // Variable zur Überprüfung, ob die Coroutine gestartet wurde
+    public BossHealth bossHP;
+    public bool isDead = false;
 
     void Start()
     {
@@ -26,14 +30,37 @@ public class Boss_Controller : MonoBehaviour
 
         // weaponHitbox.enabled = false;
         bossAnimator = GetComponent<Animator>();
-        StartCoroutine(AttackPattern());
-        weaponHitbox.enabled = false;
     }
+
+    void Update()
+    {
+        if (bossHP.IsDead()){
+            isDead = true;
+            return;
+        }
+
+        // Überprüfen, ob der Spieler innerhalb des Aggro-Radius ist
+        if (Vector2.Distance(transform.position, player.position) <= aggroRadius)
+        {
+            // Überprüfen, ob die Coroutine bereits gestartet wurde
+            if (!isCoroutineStarted)
+            {
+                StartCoroutine(AttackPattern());
+                isCoroutineStarted = true;
+            }
+        }
+    }   
 
     IEnumerator AttackPattern()
     {
         while (true) // Dauerhaft wiederholen
         {
+
+            if (bossHP.IsDead()){
+            isDead = true;
+            yield break; 
+            }
+
             yield return new WaitForSeconds(attackCooldown);
 
             // Führe den Dash aus
@@ -59,6 +86,12 @@ public class Boss_Controller : MonoBehaviour
 
     IEnumerator Dash()
     {
+
+        if (bossHP.IsDead()){
+            isDead = true;
+            yield break; 
+        }
+
         weaponHitbox.enabled = true;
         bossAnimator.SetTrigger("dash");
         // Richtung zum Spieler berechnen
@@ -74,6 +107,11 @@ public class Boss_Controller : MonoBehaviour
 
     IEnumerator Attack()
     {
+        if (bossHP.IsDead()){
+            isDead = true;
+            yield break; 
+            }
+
         // Führe hier die Angriffsanimation aus
         bossAnimator.SetTrigger("attack");
         Debug.Log("Angriff ausgeführt!");

@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1072653618179200938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5959168590976226633}
+  m_Layer: 0
+  m_Name: playerWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5959168590976226633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072653618179200938}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.236023, y: 5.1650333, z: -1.3868983}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1118033227506394281}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1118033227506394262
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,7 +46,6 @@ GameObject:
   - component: {fileID: 1118033227506394261}
   - component: {fileID: 1118033227506394260}
   - component: {fileID: 1118033227506394263}
-  - component: {fileID: 4397970516668794823}
   - component: {fileID: 2668877907894176158}
   - component: {fileID: 2668877907894176159}
   - component: {fileID: 2668877907894176136}
@@ -38,7 +68,8 @@ Transform:
   m_LocalPosition: {x: 353.16, y: -14.71, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5959168590976226633}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -192,22 +223,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   climbAudio: {fileID: 0}
---- !u!70 &4397970516668794823
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118033227506394262}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 1.3305992, y: -0.17828213}
-  m_Size: {x: 1.8564594, y: 0.29256314}
-  m_Direction: 1
 --- !u!114 &2668877907894176158
 MonoBehaviour:
   m_ObjectHideFlags: 0

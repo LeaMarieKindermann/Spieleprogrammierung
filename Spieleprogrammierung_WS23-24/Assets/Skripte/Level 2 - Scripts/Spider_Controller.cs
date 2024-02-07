@@ -14,6 +14,9 @@ public class Spider_Controller : MonoBehaviour
     private bool canAttack = true;
     private bool isDead = false; 
     private SpiderHealth spiderHealth; // Referenz auf das SpiderHealth Skript
+    public AudioSource idleAudio;
+    public float playInterval = 5f; // Intervall in Sekunden zwischen den Audiowiedergaben
+    private float timer = 0f; // Timer, um das Intervall zu verfolgen
     
 
     void Start()
@@ -29,6 +32,17 @@ public class Spider_Controller : MonoBehaviour
     {
         if (spiderHealth.IsDead()){
             isDead = true;
+        }
+
+        // Erhöhe den Timer in jedem Frame
+        timer += Time.deltaTime;
+
+        // Wenn der Timer das Intervall überschreitet, spiele das Audio ab
+        if (timer >= playInterval)
+        {
+            PlayIdleAudio();
+            // Setze den Timer zurück
+            timer = 0f;
         }
 
         // Überprüfen Sie zuerst, ob der Spieler innerhalb des Aggro-Radius ist.
@@ -76,5 +90,13 @@ public class Spider_Controller : MonoBehaviour
         target.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 
+    void PlayIdleAudio()
+    {
+        // Überprüfe, ob die AudioSource vorhanden und nicht gerade abgespielt wird
+        if (idleAudio != null && !idleAudio.isPlaying)
+        {
+            idleAudio.Play(); // Spiele die AudioSource ab
+        }
+    }
 }
 
