@@ -31698,7 +31698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8f90bce898e50499106a95ff452a7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 30
+  maxHealth: 50
   currentHealth: 0
   bossAnimator: {fileID: 1133831922}
   startObject: {fileID: 109811601}
