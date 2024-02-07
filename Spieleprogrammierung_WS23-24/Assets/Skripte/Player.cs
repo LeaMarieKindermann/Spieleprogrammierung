@@ -158,6 +158,10 @@ public class Player : MonoBehaviour
                 spiderdenHealth.TakeDamage(Speerdamage);
             }
         }
+        else if (weaponHitbox.enabled && collision.gameObject.CompareTag("boss_weapon"))
+        {
+            return;
+        }
         else if (weaponHitbox.enabled && collision.gameObject.CompareTag("boss"))
         {
             BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();

@@ -34,6 +34,7 @@ TagManager:
   - Tutorial10
   - Tutorial11
   - boss
+  - boss_weapon
   layers:
   - Default
   - TransparentFX

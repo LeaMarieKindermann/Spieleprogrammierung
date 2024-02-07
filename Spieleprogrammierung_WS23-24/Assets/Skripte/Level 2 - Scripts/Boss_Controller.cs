@@ -53,6 +53,7 @@ public class Boss_Controller : MonoBehaviour
     {
     if (collision.gameObject.CompareTag("Player")) {
         Debug.Log("Player hit");
+        player.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
     }
 
