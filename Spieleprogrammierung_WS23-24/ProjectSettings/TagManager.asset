@@ -33,6 +33,7 @@ TagManager:
   - star3
   - Tutorial10
   - Tutorial11
+  - boss
   layers:
   - Default
   - TransparentFX

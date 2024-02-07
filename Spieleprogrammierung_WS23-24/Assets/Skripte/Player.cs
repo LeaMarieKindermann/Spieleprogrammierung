@@ -158,6 +158,17 @@ public class Player : MonoBehaviour
                 spiderdenHealth.TakeDamage(Speerdamage);
             }
         }
+        else if (weaponHitbox.enabled && collision.gameObject.CompareTag("boss"))
+        {
+            BossHealth bossHealth = collision.gameObject.GetComponent<BossHealth>();
+            Boss_Controller bossController = collision.gameObject.GetComponent<Boss_Controller>();
+
+            if (bossHealth != null && bossController != null)
+            {
+                Debug.Log("Spieler greift BOSS an und verursacht " + Speerdamage + " Schaden!");
+                bossHealth.TakeDamage(Speerdamage);
+            }
+        }
         else if (collision.gameObject.tag == "levelEnd")
         {
  
